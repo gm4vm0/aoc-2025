@@ -1,0 +1,178 @@
+@font-face {
+  font-family: "Source Code Pro";
+  font-style: normal;
+  font-weight: 300;
+  src: url(./SourceCodePro-Light.ttf) format("truetype");
+}
+
+:root {
+  --bg: #0f0f23;
+  --bg-panel: #10101a;
+  --bg-hover: #19193b;
+  --border: #333340;
+  --text: #cccccc;
+  --text-bright: #ffffff;
+  --accent: #00cc00;
+  --accent-hover: #99ff99;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+/* html { */
+/*   height: 100%; */
+/* } */
+
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Source Code Pro", monospace;
+  font-size: 14pt;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+h1,
+h2 {
+  font-size: 1em;
+  margin: 0;
+}
+
+h2 {
+  color: var(--text-bright);
+}
+
+a {
+  text-decoration: none;
+  color: var(--accent);
+
+  &:hover {
+    color: var(--accent-hover);
+  }
+}
+
+button {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--accent);
+  cursor: pointer;
+  transition: color 0.2s;
+
+  &:hover,
+  &:focus {
+    color: var(--accent-hover);
+    outline: none;
+  }
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select,
+pre {
+  font: inherit;
+}
+
+textarea {
+  background: transparent;
+  color: var(--text);
+  font-size: 0.75em;
+  padding: 0.5em;
+  resize: vertical;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+header {
+  padding: 0.8em 1.2em;
+  border-bottom: 1px solid var(--border);
+  color: var(--accent);
+  text-shadow:
+    0 0 2px var(--accent),
+    0 0 5px var(--accent);
+  flex-shrink: 0;
+}
+
+#container {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  overflow: hidden;
+}
+
+nav {
+  border-right: 1px solid var(--border);
+  padding: 1em;
+  overflow-y: auto;
+
+  h2 {
+    margin-bottom: 1em;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  li {
+    cursor: pointer;
+    transition: background 0.15s;
+
+    &:hover,
+    &.active {
+      color: var(--text-bright);
+      text-shadow: 0 0 5px var(--text-bright);
+    }
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1em;
+  overflow-y: auto;
+
+  button {
+    align-self: flex-start;
+  }
+
+  .output {
+    margin-bottom: 16px;
+    flex: 1;
+    overflow-y: auto;
+
+    pre {
+      background: #1a1a2a;
+      color: var(--text-bright);
+      padding: 12px;
+      border-radius: 6px;
+      white-space: pre-wrap;
+      margin: 0;
+    }
+  }
+}
