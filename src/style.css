@@ -157,8 +157,8 @@ main {
   padding: 1em;
   overflow-y: auto;
 
-  button {
-    align-self: flex-start;
+  #controls {
+    display: flex;
   }
 
   .output {

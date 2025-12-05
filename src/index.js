@@ -5,6 +5,7 @@ const main = document.querySelector("main");
 const header = main.querySelector("h2");
 const output = main.querySelector("pre");
 const runBtn = document.querySelector("#runBtn");
+const runSampleBtn = document.querySelector("#runSampleBtn");
 const inputArea = main.querySelector("textarea");
 
 const totalDays = 12;
@@ -30,15 +31,13 @@ dayItems.forEach((li, index) => {
   });
 });
 
-runBtn.addEventListener("click", async () => {
-  output.textContent = "Running...";
-
+async function run(inputDir) {
   const dayStr = String(currentDay).padStart(2, "0");
 
   let input = inputArea.value.trim();
   if (!input) {
     try {
-      input = (await import(`./inputs/day${dayStr}.txt`)).default;
+      input = (await import(`${inputDir}/day${dayStr}.txt`)).default;
     } catch {
       input = "";
     }
@@ -53,4 +52,14 @@ runBtn.addEventListener("click", async () => {
   } catch (err) {
     output.textContent = `Error loading solution for day ${currentDay}:\n${err}`;
   }
+}
+
+runBtn.addEventListener("click", async () => {
+  output.textContent = "Running...";
+  await run("./inputs");
+});
+
+runSampleBtn.addEventListener("click", async () => {
+  output.textContent = "Running...";
+  await run("./inputs/sample");
 });
