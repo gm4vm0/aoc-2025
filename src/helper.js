@@ -1,13 +1,13 @@
 export function parseInput(input, options = {}) {
-  const { asNumbers = false, skipEmpty = true, map } = options;
+  const { delim = "\n", asNumbers = false, skipEmpty = true, map } = options;
 
   return input
-    .split("\n")
-    .map((line) => line.trim())
-    .filter((line) => !skipEmpty || line !== "")
-    .map((line) => {
-      if (map) return map(line);
-      if (asNumbers) return Number(line);
-      return line;
+    .split(delim)
+    .map((token) => token.trim())
+    .filter((token) => !skipEmpty || token !== "")
+    .map((token) => {
+      if (map) return map(token);
+      if (asNumbers) return Number(token);
+      return token;
     });
 }
