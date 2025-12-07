@@ -45,10 +45,29 @@ async function run(inputDir) {
 
   try {
     const mod = await import(`./solutions/day${dayStr}.js`);
-    const part1 = mod.part1?.(input);
-    const part2 = mod.part2?.(input);
 
-    output.textContent = `Part 1: ${part1}\nPart 2: ${part2}`;
+    const t0 = performance.now();
+
+    let p1, p1time;
+    if (mod.part1) {
+      const t1 = performance.now();
+      p1 = mod.part1(input);
+      p1time = performance.now() - t1;
+    }
+
+    let p2, p2time;
+    if (mod.part2) {
+      const t2 = performance.now();
+      p2 = mod.part2(input);
+      p2time = performance.now() - t2;
+    }
+
+    const totalTime = performance.now() - t0;
+
+    output.textContent =
+      `Part 1: ${p1} (${p1time?.toFixed(2)} ms)\n` +
+      `Part 2: ${p2} (${p2time?.toFixed(2)} ms)\n\n` +
+      `Total: ${totalTime.toFixed(2)} ms`;
   } catch (err) {
     output.textContent = `Error loading solution for day ${currentDay}:\n${err}`;
   }
