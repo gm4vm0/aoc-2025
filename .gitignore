@@ -1,4 +1,5 @@
 node_modules/
 dist/
 src/inputs/
+!src/inputs/sample/
 .DS_Store
